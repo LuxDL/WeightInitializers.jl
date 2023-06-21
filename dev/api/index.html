@@ -12,25 +12,25 @@
         <meta name="author" content="Avik Pal">
       
       
-        <link rel="canonical" href="https://luxdl.github.io/WeightInitializers.jl/">
+        <link rel="canonical" href="https://luxdl.github.io/WeightInitializers.jl/api/">
       
       
+        <link rel="prev" href="..">
       
-        <link rel="next" href="api/">
       
-      <link rel="icon" href="assets/images/favicon.png">
+      <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.16">
     
     
       
-        <title>WeightInitializers.jl</title>
+        <title>API Reference - WeightInitializers.jl</title>
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.26e3688c.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.26e3688c.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.ecc896b0.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ecc896b0.min.css">
       
       
 
@@ -46,17 +46,17 @@
       
     
     
-      <link rel="stylesheet" href="assets/custom.css">
+      <link rel="stylesheet" href="../assets/custom.css">
     
-      <link rel="stylesheet" href="assets/Documenter.css">
+      <link rel="stylesheet" href="../assets/Documenter.css">
     
-      <link rel="stylesheet" href="css/ansi-colours.css">
+      <link rel="stylesheet" href="../css/ansi-colours.css">
     
-      <link rel="stylesheet" href="css/jupyter-cells.css">
+      <link rel="stylesheet" href="../css/jupyter-cells.css">
     
-      <link rel="stylesheet" href="css/pandas-dataframe.css">
+      <link rel="stylesheet" href="../css/pandas-dataframe.css">
     
-    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -85,7 +85,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#weightinitializers" class="md-skip">
+        <a href="#weight-initializers" class="md-skip">
           Skip to content
         </a>
       
@@ -105,7 +105,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="." title="WeightInitializers.jl" class="md-header__button md-logo" aria-label="WeightInitializers.jl" data-md-component="logo">
+    <a href=".." title="WeightInitializers.jl" class="md-header__button md-logo" aria-label="WeightInitializers.jl" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -124,7 +124,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              WeightInitializers.jl
+              API Reference
             
           </span>
         </div>
@@ -240,7 +240,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="." title="WeightInitializers.jl" class="md-nav__button md-logo" aria-label="WeightInitializers.jl" data-md-component="logo">
+    <a href=".." title="WeightInitializers.jl" class="md-nav__button md-logo" aria-label="WeightInitializers.jl" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -280,6 +280,21 @@
 
   
   
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        WeightInitializers.jl
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
     
   
   
@@ -291,56 +306,10 @@
         
       
       
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          WeightInitializers.jl
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="." class="md-nav__link md-nav__link--active">
-        WeightInitializers.jl
-      </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#quick-examples" class="md-nav__link">
-    Quick examples
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="api/" class="md-nav__link">
+      <a href="./" class="md-nav__link md-nav__link--active">
         API Reference
       </a>
+      
     </li>
   
 
@@ -365,21 +334,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#quick-examples" class="md-nav__link">
-    Quick examples
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -393,60 +347,71 @@
                   
 
 
-<p><a id='WeightInitializers'></a></p>
-<p><a id='WeightInitializers-1'></a></p>
-<h1 id="weightinitializers">WeightInitializers<a class="headerlink" href="#weightinitializers" title="Permanent link">¤</a></h1>
-<p><a href="https://julialang.zulipchat.com/#narrow/stream/machine-learning"><img alt="Join the chat at https://julialang.zulipchat.com #machine-learning" src="https://img.shields.io/static/v1?label=Zulip&amp;message=chat&amp;color=9558b2&amp;labelColor=389826" /></a> <a href="https://luxdl.github.io/WeightInitializers.jl/dev"><img alt="Latest Docs" src="https://img.shields.io/badge/docs-latest-blue.svg" /></a> <a href="https://luxdl.github.io/WeightInitializers.jl/stable"><img alt="Stable Docs" src="https://img.shields.io/badge/docs-stable-blue.svg" /></a></p>
-<p><a href="https://github.com/LuxDL/WeightInitializers.jl/actions/workflows/CI.yml"><img alt="CI" src="https://github.com/LuxDL/WeightInitializers.jl/actions/workflows/CI.yml/badge.svg" /></a> <a href="https://codecov.io/gh/LuxDL/WeightInitializers.jl"><img alt="codecov" src="https://codecov.io/gh/LuxDL/WeightInitializers.jl/branch/main/graph/badge.svg?token=1ZY0A2NPEM" /></a> <a href="https://pkgs.genieframework.com?packages=WeightInitializers"><img alt="Package Downloads" src="https://shields.io/endpoint?url=https://pkgs.genieframework.com/api/v1/badge/WeightInitializers" /></a></p>
-<p><a href="https://github.com/SciML/ColPrac"><img alt="ColPrac: Contributor's Guide on Collaborative Practices for Community Packages" src="https://img.shields.io/badge/ColPrac-Contributor's%20Guide-blueviolet" /></a> <a href="https://github.com/SciML/SciMLStyle"><img alt="SciML Code Style" src="https://img.shields.io/static/v1?label=code%20style&amp;message=SciML&amp;color=9558b2&amp;labelColor=389826" /></a></p>
-<p><code>WeightInitializers.jl</code> provides common weight initialization schemes for deep learning models.</p>
-<div class="highlight"><pre><span></span><code><span class="k">using</span><span class="w"> </span><span class="n">WeightInitializers</span><span class="p">,</span><span class="w"> </span><span class="n">Random</span>
-
-<span class="c"># Fixing rng</span>
-<span class="n">rng</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Random</span><span class="o">.</span><span class="n">MersenneTwister</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
-
-<span class="c"># Explicit rng call</span>
-<span class="n">weights</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">kaiming_normal</span><span class="p">(</span><span class="n">rng</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">)</span>
-<span class="c">#2×5 Matrix{Float32}:</span>
-<span class="c"># -0.351662   0.0171745   1.12442   -0.296372   -1.67094</span>
-<span class="c"># -0.281053  -0.18941    -0.724099   0.0987538   0.634549</span>
-
-<span class="c"># Default rng call</span>
-<span class="n">weights</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">kaiming_normal</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">)</span>
-<span class="c">#2×5 Matrix{Float32}:</span>
-<span class="c"># -0.227513  -0.265372   0.265788  1.29955  -0.192836</span>
-<span class="c">#  0.687611   0.454679  -0.433656  0.20548   0.292002</span>
-
-<span class="c"># Passing kwargs (if needed) with explicit rng call</span>
-<span class="n">weights_cl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">kaiming_normal</span><span class="p">(</span><span class="n">rng</span><span class="p">;</span><span class="w"> </span><span class="n">gain</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
-<span class="n">weights</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">weights_cl</span><span class="p">(</span><span class="n">rng</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">)</span>
-<span class="c">#2×5 Matrix{Float32}:</span>
-<span class="c"># 0.484056   0.231723   0.164379   0.306147   0.18365</span>
-<span class="c"># 0.0836414  0.666965  -0.396323  -0.711329  -0.382971</span>
-
-<span class="c"># Passing kwargs (if needed) with default rng call</span>
-<span class="n">weights_cl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">kaiming_normal</span><span class="p">(;</span><span class="w"> </span><span class="n">gain</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
-<span class="n">weights</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">weights_cl</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">)</span>
-<span class="c">#2×5 Matrix{Float32}:</span>
-<span class="c"># -0.160876  -0.187646   0.18794   0.918918  -0.136356</span>
-<span class="c">#  0.486214   0.321506  -0.306641  0.145296   0.206476</span>
+<p><a id='Weight-Initializers'></a></p>
+<p><a id='Weight-Initializers-1'></a></p>
+<h1 id="weight-initializers">Weight Initializers<a class="headerlink" href="#weight-initializers" title="Permanent link">¤</a></h1>
+<p><a id='WeightInitializers.zeros32' href='#WeightInitializers.zeros32'>#</a>
+<strong><code>WeightInitializers.zeros32</code></strong> &mdash; <em>Function</em>.</p>
+<div class="highlight"><pre><span></span><code><span class="n">zeros32</span><span class="p">(</span><span class="o">::</span><span class="kt">AbstractRNG</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="o">...</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">zeros</span><span class="p">(</span><span class="kt">Float32</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="o">...</span><span class="p">)</span>
 </code></pre></div>
-<p><a id='Quick-examples'></a></p>
-<p><a id='Quick-examples-1'></a></p>
-<h2 id="quick-examples">Quick examples<a class="headerlink" href="#quick-examples" title="Permanent link">¤</a></h2>
-<p>The package is meant to be working with deep learning libraries such as F/Lux. All the methods take as input the chosen <code>rng</code> type and the dimension for the array.</p>
-<div class="highlight"><pre><span></span><code><span class="n">weights</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">init</span><span class="p">(</span><span class="n">rng</span><span class="p">,</span><span class="w"> </span><span class="n">dims</span><span class="o">...</span><span class="p">)</span>
+<p>Return an <code>Array{Float32}</code> of zeros of the given <code>size</code>. (<code>rng</code> is ignored)</p>
+<p><a target='_blank' href='https://github.com/LuxDL/WeightInitializers.jl/blob/f85f994e1a9c2a6aeaa127285c7338e51d228835/src/initializers.jl#L1-L5' class='documenter-source'>source</a><br></p>
+<p><a id='WeightInitializers.ones32' href='#WeightInitializers.ones32'>#</a>
+<strong><code>WeightInitializers.ones32</code></strong> &mdash; <em>Function</em>.</p>
+<div class="highlight"><pre><span></span><code><span class="n">ones32</span><span class="p">(</span><span class="o">::</span><span class="kt">AbstractRNG</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="o">...</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ones</span><span class="p">(</span><span class="kt">Float32</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="o">...</span><span class="p">)</span>
 </code></pre></div>
-<p>The <code>rng</code> is optional, if not specified a default one will be used.</p>
-<div class="highlight"><pre><span></span><code><span class="n">weights</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">init</span><span class="p">(</span><span class="n">dims</span><span class="o">...</span><span class="p">)</span>
+<p>Return an <code>Array{Float32}</code> of ones of the given <code>size</code>. (<code>rng</code> is ignored)</p>
+<p><a target='_blank' href='https://github.com/LuxDL/WeightInitializers.jl/blob/f85f994e1a9c2a6aeaa127285c7338e51d228835/src/initializers.jl#L8-L12' class='documenter-source'>source</a><br></p>
+<p><a id='WeightInitializers.rand32' href='#WeightInitializers.rand32'>#</a>
+<strong><code>WeightInitializers.rand32</code></strong> &mdash; <em>Function</em>.</p>
+<div class="highlight"><pre><span></span><code><span class="n">rand32</span><span class="p">(</span><span class="n">rng</span><span class="o">::</span><span class="kt">AbstractRNG</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="o">...</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rand</span><span class="p">(</span><span class="n">rng</span><span class="p">,</span><span class="w"> </span><span class="kt">Float32</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="o">...</span><span class="p">)</span>
 </code></pre></div>
-<p>If there is the need to use keyword arguments the methods can be called with just the <code>rng</code> (optionally) and the keywords to get in return a function behaving like the two examples above.</p>
-<div class="highlight"><pre><span></span><code><span class="n">weights_init</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">init</span><span class="p">(</span><span class="n">rng</span><span class="p">;</span><span class="w"> </span><span class="n">kwargs</span><span class="o">...</span><span class="p">)</span>
-<span class="n">weights</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">weights_init</span><span class="p">(</span><span class="n">rng</span><span class="p">,</span><span class="w"> </span><span class="n">dims</span><span class="o">...</span><span class="p">)</span>
-<span class="c"># or</span>
-<span class="n">weights_init</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">init</span><span class="p">(;</span><span class="w"> </span><span class="n">kwargs</span><span class="o">...</span><span class="p">)</span>
-<span class="n">weights</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">weights_init</span><span class="p">(</span><span class="n">dims</span><span class="o">...</span><span class="p">)</span>
+<p>Return an <code>Array{Float32}</code> of random numbers from a uniform distribution of the given <code>size</code>.</p>
+<p><a target='_blank' href='https://github.com/LuxDL/WeightInitializers.jl/blob/f85f994e1a9c2a6aeaa127285c7338e51d228835/src/initializers.jl#L23-L28' class='documenter-source'>source</a><br></p>
+<p><a id='WeightInitializers.randn32' href='#WeightInitializers.randn32'>#</a>
+<strong><code>WeightInitializers.randn32</code></strong> &mdash; <em>Function</em>.</p>
+<div class="highlight"><pre><span></span><code><span class="n">randn32</span><span class="p">(</span><span class="n">rng</span><span class="o">::</span><span class="kt">AbstractRNG</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="o">...</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">randn</span><span class="p">(</span><span class="n">rng</span><span class="p">,</span><span class="w"> </span><span class="kt">Float32</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="o">...</span><span class="p">)</span>
 </code></pre></div>
+<p>Return an <code>Array{Float32}</code> of random numbers from a standard normal distribution of the given <code>size</code>.</p>
+<p><a target='_blank' href='https://github.com/LuxDL/WeightInitializers.jl/blob/f85f994e1a9c2a6aeaa127285c7338e51d228835/src/initializers.jl#L15-L20' class='documenter-source'>source</a><br></p>
+<p><a id='WeightInitializers.glorot_normal' href='#WeightInitializers.glorot_normal'>#</a>
+<strong><code>WeightInitializers.glorot_normal</code></strong> &mdash; <em>Function</em>.</p>
+<div class="highlight"><pre><span></span><code><span class="n">glorot_normal</span><span class="p">(</span><span class="n">rng</span><span class="o">::</span><span class="kt">AbstractRNG</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="o">...</span><span class="p">;</span><span class="w"> </span><span class="n">gain</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
+</code></pre></div>
+<p>Return an <code>Array{Float32}</code> of the given <code>size</code> containing random numbers drawn from a normal distribution with standard deviation <code>gain * sqrt(2 / (fan_in + fan_out))</code>. This method is described in [1] and also known as Xavier initialization.</p>
+<p><strong>References</strong></p>
+<p>[1] Glorot, Xavier, and Yoshua Bengio. "Understanding the difficulty of training deep feedforward neural networks." <em>Proceedings of the thirteenth international conference on artificial intelligence and statistics</em>. 2010.</p>
+<p><a target='_blank' href='https://github.com/LuxDL/WeightInitializers.jl/blob/f85f994e1a9c2a6aeaa127285c7338e51d228835/src/initializers.jl#L50-L62' class='documenter-source'>source</a><br></p>
+<p><a id='WeightInitializers.glorot_uniform' href='#WeightInitializers.glorot_uniform'>#</a>
+<strong><code>WeightInitializers.glorot_uniform</code></strong> &mdash; <em>Function</em>.</p>
+<div class="highlight"><pre><span></span><code><span class="n">glorot_uniform</span><span class="p">(</span><span class="n">rng</span><span class="o">::</span><span class="kt">AbstractRNG</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="o">...</span><span class="p">;</span><span class="w"> </span><span class="n">gain</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
+</code></pre></div>
+<p>Return an <code>Array{Float32}</code> of the given <code>size</code> containing random numbers drawn from a uniform distribution on the interval <span class="arithmatex">\([-x, x]\)</span>, where <code>x = gain * sqrt(6 / (fan_in + fan_out))</code>. This method is described in [1] and also known as Xavier initialization.</p>
+<p><strong>References</strong></p>
+<p>[1] Glorot, Xavier, and Yoshua Bengio. "Understanding the difficulty of training deep feedforward neural networks." <em>Proceedings of the thirteenth international conference on artificial intelligence and statistics</em>. 2010.</p>
+<p><a target='_blank' href='https://github.com/LuxDL/WeightInitializers.jl/blob/f85f994e1a9c2a6aeaa127285c7338e51d228835/src/initializers.jl#L31-L44' class='documenter-source'>source</a><br></p>
+<p><a id='WeightInitializers.kaiming_normal' href='#WeightInitializers.kaiming_normal'>#</a>
+<strong><code>WeightInitializers.kaiming_normal</code></strong> &mdash; <em>Function</em>.</p>
+<div class="highlight"><pre><span></span><code><span class="n">kaiming_normal</span><span class="p">(</span><span class="n">rng</span><span class="o">::</span><span class="kt">AbstractRNG</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="o">...</span><span class="p">;</span><span class="w"> </span><span class="n">gain</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">√</span><span class="mf">2f0</span><span class="p">)</span>
+</code></pre></div>
+<p>Return an <code>Array{Float32}</code> of the given <code>size</code> containing random numbers taken from a normal distribution standard deviation <code>gain / sqrt(fan_in)</code></p>
+<p><strong>References</strong></p>
+<p>[1] He, Kaiming, et al. "Delving deep into rectifiers: Surpassing human-level performance on imagenet classification." <em>Proceedings of the IEEE international conference on computer vision</em>. 2015.</p>
+<p><a target='_blank' href='https://github.com/LuxDL/WeightInitializers.jl/blob/f85f994e1a9c2a6aeaa127285c7338e51d228835/src/initializers.jl#L85-L96' class='documenter-source'>source</a><br></p>
+<p><a id='WeightInitializers.kaiming_uniform' href='#WeightInitializers.kaiming_uniform'>#</a>
+<strong><code>WeightInitializers.kaiming_uniform</code></strong> &mdash; <em>Function</em>.</p>
+<div class="highlight"><pre><span></span><code><span class="n">kaiming_uniform</span><span class="p">(</span><span class="n">rng</span><span class="o">::</span><span class="kt">AbstractRNG</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="o">...</span><span class="p">;</span><span class="w"> </span><span class="n">gain</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">√</span><span class="mf">2f0</span><span class="p">)</span>
+</code></pre></div>
+<p>Return an <code>Array{Float32}</code> of the given <code>size</code> containing random numbers drawn from a uniform distribution on the interval <code>[-x, x]</code>, where <code>x = gain * sqrt(3/fan_in)</code>.</p>
+<p><strong>References</strong></p>
+<p>[1] He, Kaiming, et al. "Delving deep into rectifiers: Surpassing human-level performance on imagenet classification." <em>Proceedings of the IEEE international conference on computer vision</em>. 2015.</p>
+<p><a target='_blank' href='https://github.com/LuxDL/WeightInitializers.jl/blob/f85f994e1a9c2a6aeaa127285c7338e51d228835/src/initializers.jl#L68-L79' class='documenter-source'>source</a><br></p>
+<p><a id='WeightInitializers.truncated_normal' href='#WeightInitializers.truncated_normal'>#</a>
+<strong><code>WeightInitializers.truncated_normal</code></strong> &mdash; <em>Function</em>.</p>
+<div class="highlight"><pre><span></span><code><span class="n">truncated_normal</span><span class="p">([</span><span class="n">rng</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">default_rng_value</span><span class="p">()],</span><span class="w"> </span><span class="n">size</span><span class="o">...</span><span class="p">;</span><span class="w"> </span><span class="n">mean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">lo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">hi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span>
+</code></pre></div>
+<p>Return an <code>Array{Float32}</code> of the given <code>size</code> where each element is drawn from a truncated normal distribution. The numbers are distributed like <code>filter(x -&gt; lo&lt;=x&lt;=hi, mean .+ std .* randn(100))</code>.</p>
+<p><a target='_blank' href='https://github.com/LuxDL/WeightInitializers.jl/blob/f85f994e1a9c2a6aeaa127285c7338e51d228835/src/initializers.jl#L102-L107' class='documenter-source'>source</a><br></p>
 
 
 
@@ -489,13 +454,13 @@
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": ".", "features": ["header.autohide", "navigation.top"], "search": "assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["header.autohide", "navigation.top"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="assets/javascripts/bundle.a51614de.min.js"></script>
+      <script src="../assets/javascripts/bundle.a51614de.min.js"></script>
       
         
-          <script src="_static/mathjax.js"></script>
+          <script src="../_static/mathjax.js"></script>
         
       
         
