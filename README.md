@@ -14,7 +14,8 @@
 [![SciML Code Style](https://img.shields.io/static/v1?label=code%20style&message=SciML&color=9558b2&labelColor=389826)](https://github.com/SciML/SciMLStyle)
 
 This package is a light dependency providing common weight initialization schemes for deep
-learning models.
+learning models. It provides a flexible interface that accepts `AbstractRNG`s and allows
+for multiple output types (`Float64`, `Float32`, `Float16` etc...)
 
 ## Example
 
@@ -27,11 +28,23 @@ using WeightInitializers, Random
 # Fixing rng
 rng = MersenneTwister(42)
 
-# Explicit rng call
-weights = kaiming_normal(rng, 2, 5)
+# Explicit rng and Float32 call
+weights = kaiming_normal(rng, Float32, 2, 5)
 #2×5 Matrix{Float32}:
 # -0.351662   0.0171745   1.12442   -0.296372   -1.67094
 # -0.281053  -0.18941    -0.724099   0.0987538   0.634549
+
+# Explicit rng call
+weights = kaiming_normal(rng, 2, 5)
+#2×5 Matrix{Float32}:
+# 0.684558  0.327706   0.232467   0.432957   0.25972
+# 0.118287  0.943231  -0.560485  -1.00597   -0.541603
+
+# Explicit Float64 call
+weights = kaiming_normal(Float64, 2, 5)
+#2×5 Matrix{Float64}:
+#  0.613897   0.570387   -0.379974  1.71233   -0.130052
+# -0.619312  -0.0207465  -0.91401   0.964145   0.487435
 
 # Default rng call
 weights = kaiming_normal(2, 5)
@@ -41,12 +54,19 @@ weights = kaiming_normal(2, 5)
 
 # Passing kwargs (if needed) with explicit rng call
 weights_cl = kaiming_normal(rng; gain=1.0)
-weights = weights_cl(rng, 2, 5)
-#2×5 Matrix{Float32}:
-# 0.484056   0.231723   0.164379   0.306147   0.18365
-# 0.0836414  0.666965  -0.396323  -0.711329  -0.382971
+weights = weights_cl(2, 5)
+#2×5 Matrix{Float64}:
+# -0.470016  -0.096709  -1.93977   -0.635964   0.165026
+#  0.224537  -0.315923   0.254835  -0.166543  -0.00340463
 
-# Passing kwargs (if needed) with default rng call
+# Passing kwargs (if needed) with explicit Float16 call
+weights_cl = kaiming_normal(Float16; gain=1.0)
+weights = weights_cl(2, 5)
+2×5 Matrix{Float64}:
+ -0.160808  -0.187664   0.187882  0.918777  -0.136354
+  0.486026   0.321397  -0.30655   0.145306   0.206441
+
+# Passing kwargs (if needed) with default call
 weights_cl = kaiming_normal(; gain=1.0)
 weights = weights_cl(2, 5)
 #2×5 Matrix{Float32}:
