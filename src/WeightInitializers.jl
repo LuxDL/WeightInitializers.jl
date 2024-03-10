@@ -9,6 +9,7 @@ end
 
 include("utils.jl")
 include("initializers.jl")
+include("rc_initializers.jl")
 
 # Mark the functions as non-differentiable
 for f in [
@@ -43,7 +44,17 @@ for f in [
     :truncated_normal,
     :orthogonal,
     :sparse_init,
-    :identity_init
+    :identity_init,
+    :rand_sparse,
+    :delay_line,
+    :delay_line_backward,
+    :cycle_jumps,
+    :simple_cycle,
+    :pseudo_svd,
+    :scaled_rand,
+    :weighted_init,
+    :informed_init,
+    :minimal_init
 ]
     @eval @non_differentiable $(f)(::Any...)
 end
@@ -58,5 +69,7 @@ export truncated_normal
 export orthogonal
 export sparse_init
 export identity_init
+export scaled_rand, weighted_init, informed_init, minimal_init
+export rand_sparse, delay_line, delay_line_backward, cycle_jumps, simple_cycle, pseudo_svd
 
 end
