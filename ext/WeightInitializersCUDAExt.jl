@@ -3,7 +3,7 @@ module WeightInitializersCUDAExt
 using WeightInitializers, CUDA
 using Random
 import WeightInitializers: __partial_apply, NUM_TO_FPOINT, identity_init, sparse_init,
-                           orthogonal
+                           orthogonal, delay_line, delay_line_backward
 
 const AbstractCuRNG = Union{CUDA.RNG, CURAND.RNG}
 
@@ -62,7 +62,39 @@ function identity_init(rng::AbstractCuRNG, ::Type{T}, dims::Integer...;
     end
 end
 
-for initializer in (:sparse_init, :identity_init)
+# rc initializers
+
+function delay_line(rng::AbstractCuRNG,
+    ::Type{T},
+    dims::Integer...;
+    weight = T(0.1)) where {T <: Number}
+    reservoir_matrix = CUDA.zeros(T, dims...)
+    @assert length(dims) == 2&&dims[1] == dims[2] "The dimensions must define a square matrix (e.g., (100, 100))"
+
+    for i in 1:(dims[1] - 1)
+        reservoir_matrix[i + 1, i] = T(weight)
+    end
+
+    return reservoir_matrix
+end
+
+function delay_line_backward(rng::AbstractCuRNG,
+    ::Type{T},
+    dims::Integer...;
+    weight = T(0.1),
+    fb_weight = T(0.2)) where {T <: Number}
+    res_size = first(dims)
+    reservoir_matrix = CUDA.zeros(T, dims...)
+
+    for i in 1:(res_size - 1)
+        reservoir_matrix[i + 1, i] = T(weight)
+        reservoir_matrix[i, i + 1] = T(fb_weight)
+    end
+
+    return reservoir_matrix
+end
+
+for initializer in (:sparse_init, :identity_init, :delay_line, :delay_line_backward)
     @eval function ($initializer)(rng::AbstractCuRNG, dims::Integer...; kwargs...)
         return $initializer(rng, Float32, dims...; kwargs...)
     end

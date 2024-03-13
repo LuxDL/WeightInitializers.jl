@@ -4,7 +4,7 @@ import PrecompileTools: @recompile_invalidations
 
 @recompile_invalidations begin
     using ChainRulesCore, PartialFunctions, Random, SpecialFunctions, Statistics,
-          LinearAlgebra
+          LinearAlgebra, Distributions
 end
 
 include("utils.jl")

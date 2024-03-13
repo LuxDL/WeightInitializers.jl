@@ -154,7 +154,7 @@ function informed_init(rng::AbstractRNG, ::Type{T}, dims::Integer...;
 end
 
 """
-    irrational_sample_init([::AbstractRNG=_default_rng()], [T=Float32], dims::Integer...;
+    minimal_init([::AbstractRNG=_default_rng()], [T=Float32], dims::Integer...;
     weight = 0.1, sampling_type = :bernoulli)
 
 Create a layer matrix using the provided random number generator and sampling parameters.
@@ -206,10 +206,10 @@ function minimal_init(rng::AbstractRNG, ::Type{T}, dims::Integer...;
     return layer_matrix
 end
 
-function _create_bernoulli(p::T,
+function _create_bernoulli(p::Number,
         res_size::Int,
         in_size::Int,
-        weight::T,
+        weight::Number,
         rng::AbstractRNG,
         ::Type{T}) where {T <: Number}
     input_matrix = zeros(T, res_size, in_size)
@@ -283,11 +283,11 @@ function rand_sparse(rng::AbstractRNG,
         radius = T(1.0),
         sparsity = T(0.1),
         std = T(1.0)) where {T <: Number}
-    lcl_sparsity = T(1) - sparsity #consistency with current implementations
+    lcl_sparsity = T(1) - T(sparsity) #consistency with current implementations
     reservoir_matrix = sparse_init(rng, T, dims...;
         sparsity = lcl_sparsity, std = T(std))
     rho_w = maximum(abs.(eigvals(reservoir_matrix)))
-    reservoir_matrix .*= radius / rho_w
+    reservoir_matrix .*= T(radius) / rho_w
     if Inf in unique(reservoir_matrix) || -Inf in unique(reservoir_matrix)
         error("Sparsity too low for size of the matrix.
             Increase res_size or increase sparsity")
