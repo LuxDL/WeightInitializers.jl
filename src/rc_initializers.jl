@@ -580,29 +580,3 @@ end
 function get_sparsity(M, dim)
     return size(M[M .!= 0], 1) / (dim * dim - size(M[M .!= 0], 1)) #nonzero/zero elements
 end
-
-#fallbacks for initializers
-for initializer in (:rand_sparse, :delay_line, :delay_line_backward, :cycle_jumps,
-    :simple_cycle, :pseudo_svd,
-    :scaled_rand, :weighted_init, :informed_init, :minimal_init)
-    NType = ifelse(initializer === :rand_sparse, Real, Number)
-    @eval function ($initializer)(dims::Integer...; kwargs...)
-        return $initializer(_default_rng(), Float32, dims...; kwargs...)
-    end
-    @eval function ($initializer)(rng::AbstractRNG, dims::Integer...; kwargs...)
-        return $initializer(rng, Float32, dims...; kwargs...)
-    end
-    @eval function ($initializer)(::Type{T},
-            dims::Integer...; kwargs...) where {T <: $NType}
-        return $initializer(_default_rng(), T, dims...; kwargs...)
-    end
-    @eval function ($initializer)(rng::AbstractRNG; kwargs...)
-        return __partial_apply($initializer, (rng, (; kwargs...)))
-    end
-    @eval function ($initializer)(rng::AbstractRNG,
-            ::Type{T}; kwargs...) where {T <: $NType}
-        return __partial_apply($initializer, ((rng, T), (; kwargs...)))
-    end
-    @eval ($initializer)(; kwargs...) = __partial_apply(
-        $initializer, (; kwargs...))
-end
