@@ -3,7 +3,8 @@ module WeightInitializersCUDAExt
 using WeightInitializers, CUDA
 using Random
 import WeightInitializers: __partial_apply, NUM_TO_FPOINT, identity_init, sparse_init,
-                           orthogonal, delay_line, delay_line_backward
+                           orthogonal, delay_line, delay_line_backward, rand_sparse,
+                           cycle_jumps, simple_cycle, pseudo_svd
 
 const AbstractCuRNG = Union{CUDA.RNG, CURAND.RNG}
 
@@ -64,6 +65,24 @@ end
 
 # rc initializers
 
+function rand_sparse(rng::AbstractCuRNG,
+    ::Type{T},
+    dims::Integer...;
+    radius = T(1.0),
+    sparsity = T(0.1),
+    std = T(1.0)) where {T <: Number}
+    lcl_sparsity = T(1) - T(sparsity) #consistency with current implementations
+    reservoir_matrix = sparse_init(rng, T, dims...;
+        sparsity = lcl_sparsity, std = T(std))
+    CUDA.@allowscalar rho_w = maximum(abs.(eigvals(reservoir_matrix)))
+    reservoir_matrix .*= T(radius) / rho_w
+    if Inf in unique(reservoir_matrix) || -Inf in unique(reservoir_matrix)
+        error("Sparsity too low for size of the matrix.
+            Increase res_size or increase sparsity")
+    end
+    return reservoir_matrix
+end
+
 function delay_line(rng::AbstractCuRNG,
     ::Type{T},
     dims::Integer...;
@@ -71,7 +90,7 @@ function delay_line(rng::AbstractCuRNG,
     reservoir_matrix = CUDA.zeros(T, dims...)
     @assert length(dims) == 2&&dims[1] == dims[2] "The dimensions must define a square matrix (e.g., (100, 100))"
 
-    for i in 1:(dims[1] - 1)
+    CUDA.@allowscalar for i in 1:(dims[1] - 1)
         reservoir_matrix[i + 1, i] = T(weight)
     end
 
@@ -86,7 +105,7 @@ function delay_line_backward(rng::AbstractCuRNG,
     res_size = first(dims)
     reservoir_matrix = CUDA.zeros(T, dims...)
 
-    for i in 1:(res_size - 1)
+    CUDA.@allowscalar for i in 1:(res_size - 1)
         reservoir_matrix[i + 1, i] = T(weight)
         reservoir_matrix[i, i + 1] = T(fb_weight)
     end
@@ -94,7 +113,75 @@ function delay_line_backward(rng::AbstractCuRNG,
     return reservoir_matrix
 end
 
-for initializer in (:sparse_init, :identity_init, :delay_line, :delay_line_backward)
+function cycle_jumps(rng::AbstractCuRNG,
+    ::Type{T},
+    dims::Integer...;
+    cycle_weight::Number = T(0.1),
+    jump_weight::Number = T(0.1),
+    jump_size::Int = 3) where {T <: Number}
+    res_size = first(dims)
+    reservoir_matrix = CUDA.zeros(T, dims...)
+
+    CUDA.@allowscalar for i in 1:(res_size - 1)
+        reservoir_matrix[i + 1, i] = T(cycle_weight)
+    end
+
+    CUDA.@allowscalar reservoir_matrix[1, res_size] = T(cycle_weight)
+
+    CUDA.@allowscalar for i in 1:jump_size:(res_size - jump_size)
+        tmp = (i + jump_size) % res_size
+        if tmp == 0
+            tmp = res_size
+        end
+        reservoir_matrix[i, tmp] = T(jump_weight)
+        reservoir_matrix[tmp, i] = T(jump_weight)
+    end
+
+    return reservoir_matrix
+end
+
+function simple_cycle(rng::AbstractCuRNG,
+    ::Type{T},
+    dims::Integer...;
+    weight = T(0.1)) where {T <: Number}
+    reservoir_matrix = CUDA.zeros(T, dims...)
+
+    CUDA.@allowscalar for i in 1:(dims[1] - 1)
+        reservoir_matrix[i + 1, i] = T(weight)
+    end
+
+    CUDA.@allowscalar reservoir_matrix[1, dims[1]] = T(weight)
+    return reservoir_matrix
+end
+
+function pseudo_svd(rng::AbstractCuRNG,
+    ::Type{T},
+    dims::Integer...;
+    max_value::Number = T(1.0),
+    sparsity::Number = 0.1,
+    sorted::Bool = true,
+    reverse_sort::Bool = false) where {T <: Number}
+    CUDA.@allowscalar reservoir_matrix = WeightInitializers.create_diag(dims[1],
+        max_value,
+        T;
+        sorted = sorted,
+        reverse_sort = reverse_sort)
+    tmp_sparsity = WeightInitializers.get_sparsity(reservoir_matrix, dims[1])
+
+    CUDA.@allowscalar while tmp_sparsity <= sparsity
+        reservoir_matrix *= WeightInitializers.create_qmatrix(dims[1],
+            rand(1:dims[1]),
+            rand(1:dims[1]),
+            rand(T) * T(2) - T(1),
+            T)
+        tmp_sparsity = WeightInitializers.get_sparsity(reservoir_matrix, dims[1])
+    end
+
+    return reservoir_matrix
+end
+
+for initializer in (:sparse_init, :identity_init, :delay_line, :delay_line_backward,
+        :rand_sparse, :cycle_jumps, :simple_cycle, :pseudo_svd)
     @eval function ($initializer)(rng::AbstractCuRNG, dims::Integer...; kwargs...)
         return $initializer(rng, Float32, dims...; kwargs...)
     end

@@ -98,7 +98,6 @@ input_inits = [
     end
 end
 
-
 # TODO: @MartinuzziFrancesco Missing tests for informed_init
 @testset "Input initializers rng = $(typeof(rng)) & arrtype = $arrtype" for (rng, arrtype) in rngs_arrtypes
     @testset "Sizes and types: $init" for init in input_inits

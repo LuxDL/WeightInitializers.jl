@@ -206,6 +206,10 @@ function minimal_init(rng::AbstractRNG, ::Type{T}, dims::Integer...;
     return layer_matrix
 end
 
+function _generate_bernoulli(rng::AbstractRNG, p::Number)
+    rand(rng) < p ? true : false
+end
+
 function _create_bernoulli(p::Number,
         res_size::Int,
         in_size::Int,
@@ -215,7 +219,7 @@ function _create_bernoulli(p::Number,
     input_matrix = zeros(T, res_size, in_size)
     for i in 1:res_size
         for j in 1:in_size
-            rand(rng, Bernoulli(p)) ? (input_matrix[i, j] = weight) :
+            _generate_bernoulli(rng, p) ? (input_matrix[i, j] = weight) :
             (input_matrix[i, j] = -weight)
         end
     end
