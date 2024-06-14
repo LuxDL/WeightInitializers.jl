@@ -330,29 +330,6 @@ function identity_init(rng::AbstractRNG, ::Type{T}, dims::Integer...;
 end
 
 # Default Fallbacks for all functions
-for initializer in (:glorot_uniform, :glorot_normal, :kaiming_uniform, :kaiming_normal,
-    :truncated_normal, :orthogonal, :sparse_init, :identity_init)
-    NType = ifelse(initializer === :truncated_normal, Real, Number)
-    @eval function ($initializer)(dims::Integer...; kwargs...)
-        return $initializer(_default_rng(), Float32, dims...; kwargs...)
-    end
-    @eval function ($initializer)(rng::AbstractRNG, dims::Integer...; kwargs...)
-        return $initializer(rng, Float32, dims...; kwargs...)
-    end
-    @eval function ($initializer)(::Type{T},
-            dims::Integer...; kwargs...) where {T <: $NType}
-        return $initializer(_default_rng(), T, dims...; kwargs...)
-    end
-    @eval function ($initializer)(rng::AbstractRNG; kwargs...)
-        return __partial_apply($initializer, (rng, (; kwargs...)))
-    end
-    @eval function ($initializer)(rng::AbstractRNG,
-            ::Type{T}; kwargs...) where {T <: $NType}
-        return __partial_apply($initializer, ((rng, T), (; kwargs...)))
-    end
-    @eval ($initializer)(; kwargs...) = __partial_apply($initializer, (; kwargs...))
-end
-
 for tp in ("16", "32", "64", "C16", "C32", "C64"), func in (:zeros, :ones, :randn, :rand)
     initializer = Symbol(func, tp)
     @eval function ($initializer)(dims::Integer...; kwargs...)
