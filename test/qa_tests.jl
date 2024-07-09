@@ -15,7 +15,7 @@ end
     @test check_all_qualified_accesses_via_owners(WeightInitializers) === nothing
     @test_broken check_all_explicit_imports_are_public(WeightInitializers) === nothing  # mostly upstream problems
 
-    try
+    try  # FIXME: Soft fail for now
         acc = check_all_qualified_accesses_are_public(WeightInitializers)
         @test acc === nothing
     catch
